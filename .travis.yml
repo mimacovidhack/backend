@@ -7,5 +7,5 @@ before_install:
 - sudo apt-get update
 - sudo apt-get install -y cf-cli
 script:
-- cf login -a https://api.eu-de.bluemix.net -u "$CF_USERNAME" -p "$CF_PASSWORD"
+- cf login -a https://api.eu-de.cf.appdomain.cloud -u "$CF_USERNAME" -p "$CF_PASSWORD"
 - cf push -f manifest.yml
