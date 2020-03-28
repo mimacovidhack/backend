@@ -1,5 +1,8 @@
 sudo: required
 language: bash
+branches:
+  only:
+    - master
 before_install:
 - wget -q -O - https://packages.cloudfoundry.org/debian/cli.cloudfoundry.org.key |
   sudo apt-key add -
