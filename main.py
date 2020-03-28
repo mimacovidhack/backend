@@ -1,12 +1,20 @@
-from flask import Flask, escape, request
-import os
+import logging
+
+from flask import Flask
+
 
 app = Flask(__name__)
-port = int(os.getenv('PORT', 3000))
+
 
 @app.route('/')
 def hello():
-    name = request.args.get("name", "World")
-    return f'Hello, {escape(name)}!'
+    return 'Hello World!'
 
-app.run(host='0.0.0.0', port=port)
+
+@app.errorhandler(500)
+def server_error(e):
+    # Log the error and stacktrace.
+    logging.exception('An error occurred during a request.')
+    return 'An internal error occurred.', 500
+# [END app]
+© 2020 GitHub, Inc.
