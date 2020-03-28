@@ -11,9 +11,6 @@ jobs:
       - python/load-cache
       - python/install-deps
       - python/save-cache
-      - run:
-          command: ./main_test.py test
-          name: Test
   deploy:
     docker:
       - image: google/cloud-sdk
@@ -27,4 +24,5 @@ jobs:
 workflows:
   main:
     jobs:
+      - build-and-test
       - deploy
