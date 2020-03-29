@@ -38,6 +38,42 @@ def add_test_data():
     #doc_ref.set(data)
 
     return {'id': data}, 200
+
+@app.route('/heroes', methods=['GET'])
+def get_heroes():
+    heroes_ref = db.collection(u'heroes')
+    heroes = heroes_ref.stream()
+    all_heroes = [{**{'id': hero.id}, **hero.to_dict()} for hero in heroes_ref.stream()]
+    
+    return jsonify(all_heroes), 200
+
+@app.route('/heroes', methods=['POST'])
+def add_hero():
+    data = request.json
+    heroes_ref = db.collection(u'heroes').add(data)
+
+    return {'id': data}, 200
+
+@app.route('/volunteers', methods=['GET'])
+def get_volunteers():
+    volunteers_ref = db.collection(u'volunteers')
+    all_volunteers = [{**{'id': volunteer.id}, **volunteer.to_dict()} for volunteer in volunteers_ref.stream()]
+    
+    return jsonify(all_volunteers), 200
+
+@app.route('/volunteers', methods=['POST'])
+def add_volunteer():
+    data = request.json
+    doc_ref = db.collection(u'volunteers').add(data)
+
+    return {'id': data}, 200
+
+@app.route('/professions', methods=['POST'])
+def add_hero():
+    data = request.json
+    heroes_ref = db.collection(u'professions').add(data)
+
+    return {'id': data}, 200
     
 
 app.run(host='0.0.0.0', port=port)
