@@ -1,4 +1,4 @@
-from flask import Flask, escape, request
+from flask import Flask, escape, request, jsonify
 import os
 import firebase_admin
 from firebase_admin import credentials
@@ -65,13 +65,6 @@ def get_volunteers():
 def add_volunteer():
     data = request.json
     doc_ref = db.collection(u'volunteers').add(data)
-
-    return {'id': data}, 200
-
-@app.route('/professions', methods=['POST'])
-def add_hero():
-    data = request.json
-    heroes_ref = db.collection(u'professions').add(data)
 
     return {'id': data}, 200
     
