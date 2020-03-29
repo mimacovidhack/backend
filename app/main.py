@@ -1,10 +1,12 @@
 from flask import Flask, escape, request, jsonify
+from flask_cors import CORS
 import os
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import firestore
 
 app = Flask(__name__)
+CORS(app)
 port = int(os.getenv('PORT', 3000))
 
 cred = credentials.Certificate({
